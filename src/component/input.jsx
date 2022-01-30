@@ -1,5 +1,6 @@
 import React from 'react'
-import { MyModal } from '../component/modal.jsx'
+import { MyModal } from './modal'
+import { InputButton } from './button'
 
 /* 入力ボックス */
 export const Input = (props) => {
@@ -11,7 +12,7 @@ export const Input = (props) => {
   const handleChange = (e) => setText(e.target.value)
   const handleAdd = () => {
     if (text !== '') {
-      props.HandleAdd(text)
+      props.handleAdd(text)
       setMesLists(['登録完了', `Todoリストに【${text}】を追加しました。`, '閉じる'])
       setModalOpen(true)
     }
@@ -19,7 +20,7 @@ export const Input = (props) => {
     setText('')
   }
   const handleClear = () => {
-    props.HandleClear()
+    props.handleClear()
     setMesLists(['クリア完了', `全てのリストを削除しました。`, '閉じる'])
     setModalOpen(true)
   }
@@ -28,21 +29,18 @@ export const Input = (props) => {
     <>
       <div className="flex justify-center">
         <input
-          className="border-solid border-slate-500 border-2"
+          className="border-2 border-solid border-slate-500"
           type="text"
           placeholder="タイトル"
           maxLength="10"
           value={text}
           onChange={handleChange}
         />
-        <button className="ml-10 bg-stone-100 border-solid border-2 border-indigo-600 rounded-lg" onClick={handleAdd}>
-          登録する
-        </button>
-        <button className="ml-10 bg-stone-100 border-solid border-2 border-indigo-600 rounded-lg" onClick={handleClear}>
-          クリア
-        </button>
+        <InputButton onClick={handleAdd} innerText={'登録'} extraClassName={'ml-10'} />
+        <InputButton onClick={handleClear} innerText={'クリア'} extraClassName={'ml-24'} />
       </div>
-      <div className={'font-bold text-rose-600 text-center' + ' ' + (isEmpty ? '' : 'hidden')}>
+
+      <div className={'text-center font-bold text-rose-600' + ' ' + (isEmpty ? '' : 'hidden')}>
         テキストを入力してください。
       </div>
 

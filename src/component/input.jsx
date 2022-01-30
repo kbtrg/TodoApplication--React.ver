@@ -6,14 +6,19 @@ import { InputButton } from './button'
 export const Input = (props) => {
   const [text, setText] = React.useState('')
   const [isEmpty, setIsEmpty] = React.useState(false)
-  const [mesLists, setMesLists] = React.useState([])
+  const [modalTitle, setModalTitle] = React.useState('')
+  const [modalBody, setModalBody] = React.useState('')
   const [modalOpen, setModalOpen] = React.useState(false)
   const closeModal = () => setModalOpen(false)
   const handleChange = (e) => setText(e.target.value)
+  const handleEnterKeyDown = (e) => {
+    if (e.keyCode === 13) handleAdd()
+  }
   const handleAdd = () => {
     if (text !== '') {
       props.handleAdd(text)
-      setMesLists(['登録完了', `Todoリストに【${text}】を追加しました。`, '閉じる'])
+      setModalTitle('登録完了')
+      setModalBody(`Todoリストに【${text}】を追加しました。`)
       setModalOpen(true)
     }
     setIsEmpty(text === '')
@@ -21,7 +26,8 @@ export const Input = (props) => {
   }
   const handleClear = () => {
     props.handleClear()
-    setMesLists(['クリア完了', `全てのリストを削除しました。`, '閉じる'])
+    setModalTitle('クリア完了')
+    setModalBody('全てのリストを削除しました')
     setModalOpen(true)
   }
 
@@ -35,6 +41,7 @@ export const Input = (props) => {
           maxLength="10"
           value={text}
           onChange={handleChange}
+          onKeyDown={(e) => handleEnterKeyDown(e)}
         />
         <InputButton onClick={handleAdd} innerText={'登録'} extraClassName={'ml-10'} />
         <InputButton onClick={handleClear} innerText={'クリア'} extraClassName={'ml-24'} />
@@ -44,7 +51,13 @@ export const Input = (props) => {
         テキストを入力してください。
       </div>
 
-      <MyModal modalType={'add'} mesList={mesLists} modalOpen={modalOpen} closeModal={closeModal} />
+      <MyModal
+        modalType={'add'}
+        modalTitle={modalTitle}
+        modalBody={modalBody}
+        modalOpen={modalOpen}
+        closeModal={closeModal}
+      />
     </>
   )
 }

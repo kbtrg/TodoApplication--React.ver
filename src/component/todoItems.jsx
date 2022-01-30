@@ -1,4 +1,5 @@
 import React from 'react'
+import { TodoButton } from './button'
 
 /* Todoリスト */
 export const TodoItems = (props) => {
@@ -16,30 +17,15 @@ export const TodoItems = (props) => {
     })
     const element = filteredItems.map((item) => {
       return (
-        <li className="flex justify-between text-xl my-1 bg-white" key={item.key}>
+        <li className="my-1 flex justify-between bg-white text-xl" key={item.key}>
           <p className="text-base">{item.text}</p>
           <div className="buttons">
             {item.done === false ? (
-              <button
-                className="text-xs mx-1 my-auto border-solid border-2 border-lime-300 rounded-lg"
-                onClick={() => handleCheck(item)}
-              >
-                完了
-              </button>
+              <TodoButton onClick={() => handleCheck(item)} innerText={'完了'} />
             ) : (
-              <button
-                className="text-xs mx-1 my-auto border-solid border-2 border-lime-300 rounded-lg"
-                onClick={() => handleCheck(item)}
-              >
-                戻る
-              </button>
+              <TodoButton onClick={() => handleCheck(item)} innerText={'戻る'} />
             )}
-            <button
-              className="text-xs mx-1 my-auto border-solid border-2 border-lime-300 rounded-lg"
-              onClick={() => handleDelete(item)}
-            >
-              削除
-            </button>
+            <TodoButton onClick={() => handleDelete(item)} innerText={'削除'} />
           </div>
         </li>
       )
@@ -48,12 +34,12 @@ export const TodoItems = (props) => {
   }
 
   return (
-    <div className="my-10 flex justify-center w-screen">
-      <div className="bg-orange-100 m-1 p-1 w-72">
+    <div className="my-10 flex w-screen justify-center">
+      <div className="m-1 w-72 bg-orange-100 p-1">
         <h3>UnDo</h3>
         <ul>{insertItem(false)}</ul>
       </div>
-      <div className="bg-blue-100 m-1 p-1 w-72">
+      <div className="m-1 w-72 bg-blue-100 p-1">
         <h3>Done</h3>
         <ul>{insertItem(true)}</ul>
       </div>

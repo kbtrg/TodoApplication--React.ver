@@ -1,6 +1,6 @@
 import React from 'react'
 import { MyModal } from './modal'
-import { InputButton } from './button'
+import { InputButton } from './buttons'
 
 /* 入力ボックス */
 export const Input = (props) => {
@@ -14,7 +14,7 @@ export const Input = (props) => {
   const handleEnterKeyDown = (e) => {
     if (e.keyCode === 13) handleAdd()
   }
-  const handleAdd = () => {
+  const handleAdd = React.useCallback(() => {
     if (text !== '') {
       props.handleAdd(text)
       setModalTitle('登録完了')
@@ -23,16 +23,17 @@ export const Input = (props) => {
     }
     setIsEmpty(text === '')
     setText('')
-  }
-  const handleClear = () => {
+  })
+  const handleClear = React.useCallback(() => {
     props.handleClear()
     setModalTitle('クリア完了')
     setModalBody('全てのリストを削除しました')
     setModalOpen(true)
-  }
+  })
 
   return (
     <>
+      {console.log('input')}
       <div className="flex justify-center">
         <input
           className="border-2 border-solid border-slate-500"

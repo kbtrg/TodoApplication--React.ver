@@ -1,7 +1,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 
-export const MyModal = (props) => {
+export const MyModal = React.memo((props) => {
   //const [isOpen, setIsOpen] = React.useState(true)
 
   /*
@@ -14,6 +14,7 @@ export const MyModal = (props) => {
  */
   return (
     <>
+      {console.log('modal')}
       {/* <div className="fixed inset-0 flex items-center justify-center">
         <button
           type="button"
@@ -76,4 +77,5 @@ export const MyModal = (props) => {
       </Transition>
     </>
   )
-}
+})
+MyModal.displayName = 'MyModal'

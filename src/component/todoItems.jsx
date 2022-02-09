@@ -1,5 +1,5 @@
 import React from 'react'
-import { TodoButton } from './button'
+import { TodoButton } from './buttons'
 
 /* Todoリスト */
 export const TodoItems = (props) => {
@@ -34,15 +34,18 @@ export const TodoItems = (props) => {
   }
 
   return (
-    <div className="my-10 flex w-screen justify-center">
-      <div className="m-1 w-72 bg-orange-100 p-1">
-        <h3>UnDo</h3>
-        <ul>{insertItem(false)}</ul>
+    <>
+      {console.log('todoitems')}
+      <div className="my-10 flex w-screen justify-center">
+        <div className="m-1 w-72 bg-orange-100 p-1">
+          <h3>UnDo</h3>
+          <ul>{insertItem(false)}</ul>
+        </div>
+        <div className="m-1 w-72 bg-blue-100 p-1">
+          <h3>Done</h3>
+          <ul>{insertItem(true)}</ul>
+        </div>
       </div>
-      <div className="m-1 w-72 bg-blue-100 p-1">
-        <h3>Done</h3>
-        <ul>{insertItem(true)}</ul>
-      </div>
-    </div>
+    </>
   )
 }

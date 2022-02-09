@@ -1,7 +1,7 @@
 import React from 'react'
-import { Header } from '../layout/header.jsx'
-import { Input } from '../layout/input.jsx'
-import { TodoItems } from '../component/todoItems.jsx'
+import { Header } from '../layout/header'
+import { Input } from '../component/input'
+import { TodoItems } from '../component/todoItems'
 import '../css/style--tailwind.css'
 
 export const TodoApp = () => {
@@ -44,10 +44,10 @@ export const TodoApp = () => {
   }
 
   return (
-    <div className="overflow-hidden w-screen h-screen bg-yellow-50">
+    <div className="h-screen w-screen overflow-hidden bg-yellow-50">
       <Header name={'Todoリスト'} />
-      <Input HandleAdd={handleAdd} HandleClear={handleClear} />
-      <TodoItems items={items} HandleCheck={handleCheck} HandleDelete={handleDelete} />
+      <Input handleAdd={handleAdd} handleClear={handleClear} />
+      <TodoItems items={items} handleCheck={handleCheck} handleDelete={handleDelete} />
     </div>
   )
 }

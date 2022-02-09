@@ -89,5 +89,9 @@
       "editor.insertSpaces": false,
       // 行の折り返し表示
       "editor.wordWrap": "off"
+    },
+    //コード保存時、eslintが自動で構文解析＆フォーマット
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
     }
   }

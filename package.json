@@ -18,7 +18,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "tailwind": "tailwindcss -i ./src/css/tailwind.css -o ./src/css/style--tailwind.css --watch"
+    "tailwind": "tailwindcss -i ./src/css/tailwind.css -o ./src/css/style--tailwind.css --watch",
+    "format": "prettier --write src/*.{js,jsx} src/**/*.{js,jsx}",
+    "lint": "eslint src/*.{js,jsx} src/**/*.{js,jsx}"
   },
   "browserslist": {
     "production": [

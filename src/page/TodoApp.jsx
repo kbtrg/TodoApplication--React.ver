@@ -23,25 +23,31 @@ export const TodoApp = () => {
   const getKey = () => Math.random().toString(32).substring(2)
 
   // todoリスト要素の追加
-  const handleAdd = React.useCallback((text) => setItems([...items, { key: getKey(), text, done: false }]))
+  const handleAdd = (text) => setItems([...items, { key: getKey(), text, done: false }])
 
   // todoリスト要素の全消去
-  const handleClear = React.useCallback(() => setItems([]))
+  const handleClear = () => setItems([])
 
   // 完了（戻る）ボタンが押されたら、doneを反転して再構築
-  const handleCheck = React.useCallback((checkedItem) => {
-    const newItems = items.map((item) => {
-      if (item === checkedItem) item.done = !item.done
-      return item
-    })
-    setItems(newItems)
-  })
+  const handleCheck = React.useCallback(
+    (checkedItem) => {
+      const newItems = items.map((item) => {
+        if (item === checkedItem) item.done = !item.done
+        return item
+      })
+      setItems(newItems)
+    },
+    [items]
+  )
 
   // 削除ボタンが押されたら、対応する要素を削除した配列を再構築
-  const handleDelete = React.useCallback((checkedItem) => {
-    const newItems = items.filter((item) => item !== checkedItem)
-    setItems(newItems)
-  })
+  const handleDelete = React.useCallback(
+    (checkedItem) => {
+      const newItems = items.filter((item) => item !== checkedItem)
+      setItems(newItems)
+    },
+    [items]
+  )
 
   return (
     <div className="h-screen w-screen overflow-hidden bg-yellow-50">

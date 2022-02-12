@@ -2,29 +2,9 @@ import { Dialog, Transition } from '@headlessui/react'
 import React from 'react'
 
 export const MyModal = React.memo((props) => {
-  //const [isOpen, setIsOpen] = React.useState(true)
-
-  /*
-    const closeModal = () => {
-    setIsOpen(false)
-    }
-   const openModal = () => {
-    setIsOpen(true)
-    }
- */
   return (
     <>
-      {console.log('modal')}
-      {/* <div className="fixed inset-0 flex items-center justify-center">
-        <button
-          type="button"
-          onClick={openModal}
-          className="px-4 py-2 text-sm font-medium text-white bg-black rounded-md bg-opacity-20 hover:bg-opacity-30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75"
-        >
-          Open dialog
-        </button>
-      </div> */}
-
+      {console.log('MyModal')}
       <Transition appear show={props.modalOpen} as={React.Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={props.closeModal}>
           <div className="min-h-screen px-4 text-center">

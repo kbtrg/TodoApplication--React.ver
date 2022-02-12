@@ -1,6 +1,6 @@
 import React from 'react'
 import { MyModal } from './modal'
-import { InputButton } from './buttons'
+import { InputButton } from './buttons/inputButton'
 
 /* 入力ボックス */
 export const Input = (props) => {
@@ -9,12 +9,12 @@ export const Input = (props) => {
   const [modalTitle, setModalTitle] = React.useState('')
   const [modalBody, setModalBody] = React.useState('')
   const [modalOpen, setModalOpen] = React.useState(false)
-  const closeModal = () => setModalOpen(false)
+  const closeModal = React.useCallback(() => setModalOpen(false), [])
   const handleChange = (e) => setText(e.target.value)
   const handleEnterKeyDown = (e) => {
     if (e.keyCode === 13) handleAdd()
   }
-  const handleAdd = React.useCallback(() => {
+  const handleAdd = () => {
     if (text !== '') {
       props.handleAdd(text)
       setModalTitle('登録完了')
@@ -23,17 +23,16 @@ export const Input = (props) => {
     }
     setIsEmpty(text === '')
     setText('')
-  })
-  const handleClear = React.useCallback(() => {
+  }
+  const handleClear = () => {
     props.handleClear()
     setModalTitle('クリア完了')
     setModalBody('全てのリストを削除しました')
     setModalOpen(true)
-  })
+  }
 
   return (
     <>
-      {console.log('input')}
       <div className="flex justify-center">
         <input
           className="border-2 border-solid border-slate-500"
@@ -52,13 +51,7 @@ export const Input = (props) => {
         テキストを入力してください。
       </div>
 
-      <MyModal
-        modalType={'add'}
-        modalTitle={modalTitle}
-        modalBody={modalBody}
-        modalOpen={modalOpen}
-        closeModal={closeModal}
-      />
+      <MyModal modalTitle={modalTitle} modalBody={modalBody} modalOpen={modalOpen} closeModal={closeModal} />
     </>
   )
 }

@@ -1,14 +1,14 @@
 import React from 'react'
-import { TodoButton } from './buttons'
+import { TodoButton } from './buttons/todoButton'
 
 /* Todoリスト */
-export const TodoItems = (props) => {
+export const TodoItems = React.memo((props) => {
   // メイン関数のonCheckへ渡す
   const handleCheck = (checkedItem) => {
-    props.HandleCheck(checkedItem)
+    props.handleCheck(checkedItem)
   }
   const handleDelete = (checkedItem) => {
-    props.HandleDelete(checkedItem)
+    props.handleDelete(checkedItem)
   }
   // items.doneの値に応じて、リスト要素挿入
   const insertItem = (bool) => {
@@ -35,7 +35,7 @@ export const TodoItems = (props) => {
 
   return (
     <>
-      {console.log('todoitems')}
+      {console.log('todoItems')}
       <div className="my-10 flex w-screen justify-center">
         <div className="m-1 w-72 bg-orange-100 p-1">
           <h3>UnDo</h3>
@@ -48,4 +48,5 @@ export const TodoItems = (props) => {
       </div>
     </>
   )
-}
+})
+TodoItems.displayName = 'TodoItems'

@@ -18,8 +18,8 @@ export const TodoItems = React.memo((props) => {
     const element = filteredItems.map((item) => {
       return (
         <li className="my-1 flex justify-between bg-white text-xl" key={item.key}>
-          <p className="text-base">{item.text}</p>
-          <div className="buttons">
+          <p className="w-48 break-words text-base">{item.text}</p>
+          <div className="my-auto">
             {item.done === false ? (
               <TodoButton onClick={() => handleCheck(item)} innerText={'完了'} />
             ) : (

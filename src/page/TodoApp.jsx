@@ -1,4 +1,5 @@
 import React from 'react'
+import axios from 'axios'
 import { Header } from '../layout/header'
 import { Input } from '../component/input'
 import { TodoItems } from '../component/todoItems'
@@ -7,8 +8,9 @@ import '../css/style--tailwind.css'
 export const TodoApp = () => {
   const [items, setItems] = React.useState([])
 
+  /*
   // ローカルストレージを用いて、データの保存・取得
-  /* // ページ読み込み時にパースして、itemsにセット
+  // ページ読み込み時にパースして、itemsにセット
   React.useEffect(() => {
     const json = localStorage.list
     if (json === undefined) return
@@ -18,7 +20,8 @@ export const TodoApp = () => {
   // itemsが更新された時にローカルストレージに保存
   React.useEffect(() => {
     localStorage.setItem('list', JSON.stringify({ items }))
-  }, [items]) */
+  }, [items])
+  */
 
   /*
   // FetchAPIで取得
@@ -35,7 +38,6 @@ export const TodoApp = () => {
 
   // axiosで取得
   React.useEffect(() => {
-    const axios = require('axios')
     axios
       .get('https://jsonplaceholder.typicode.com/todos')
       .then((response) => {
@@ -52,6 +54,25 @@ export const TodoApp = () => {
         console.log(error)
       })
   }, [])
+
+  /*
+  // axiosで取得
+  React.useEffect(async () => {
+    try {
+      const response = await axios.get('https://jsonplaceholder.typicode.com/todos')
+      const filteredData = await response.data.filter((data) => data.id < 10)
+      filteredData.forEach((data) => {
+        console.log(data)
+        console.log(data.title)
+        console.log(data.completed)
+        setItems([...items, { key: getKey(), text: data.title, done: data.completed }])
+        console.log(items)
+      })
+    } catch (error) {
+      console.log(error)
+    }
+  }, [])
+  */
 
   // リストを一意に紐づけるキー
   const getKey = () => Math.random().toString(32).substring(2)

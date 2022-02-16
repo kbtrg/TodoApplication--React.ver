@@ -38,7 +38,6 @@ export const Input = (props) => {
           className="border-2 border-solid border-slate-500"
           type="text"
           placeholder="タイトル"
-          maxLength="10"
           value={text}
           onChange={handleChange}
           onKeyDown={(e) => handleEnterKeyDown(e)}

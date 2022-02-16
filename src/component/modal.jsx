@@ -4,7 +4,6 @@ import React from 'react'
 export const MyModal = React.memo((props) => {
   return (
     <>
-      {console.log('MyModal')}
       <Transition appear show={props.modalOpen} as={React.Fragment}>
         <Dialog as="div" className="fixed inset-0 z-10 overflow-y-auto" onClose={props.closeModal}>
           <div className="min-h-screen px-4 text-center">

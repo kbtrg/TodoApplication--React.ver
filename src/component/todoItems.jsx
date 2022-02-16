@@ -35,7 +35,6 @@ export const TodoItems = React.memo((props) => {
 
   return (
     <>
-      {console.log('todoItems')}
       <div className="my-10 flex w-screen justify-center">
         <div className="m-1 w-72 bg-orange-100 p-1">
           <h3>UnDo</h3>

@@ -1,8 +1,11 @@
 import React from 'react'
 import { TodoButton } from './button/todoButton'
+import { TodoItemsContext } from '../component/provider/TodoItemsProvider'
 
 /* Todoリスト */
 export const TodoItems = React.memo((props) => {
+  const [items] = React.useContext(TodoItemsContext)
+
   // メイン関数のonCheckへ渡す
   const handleCheck = (checkedItem) => {
     props.handleCheck(checkedItem)
@@ -12,7 +15,7 @@ export const TodoItems = React.memo((props) => {
   }
   // items.doneの値に応じて、リスト要素挿入
   const insertItem = (bool) => {
-    const filteredItems = props.items.filter((item) => {
+    const filteredItems = items.filter((item) => {
       return item.done === bool
     })
     const element = filteredItems.map((item) => {

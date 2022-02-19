@@ -32,7 +32,6 @@ export const TodoApp = () => {
   // axiosで取得
   React.useEffect(async () => {
     try {
-      // const loadedData = []
       const res = await axios.get('https://jsonplaceholder.typicode.com/todos')
       const filteredData = res.data.filter((data) => data.id < 20)
       const loadedData = filteredData.map((data) => ({ key: getKey(), text: data.title, done: data.completed }))
@@ -76,7 +75,7 @@ export const TodoApp = () => {
     <div className="w-screen overflow-hidden bg-yellow-50">
       <Header name={'Todoリスト'} />
       <Input handleAdd={handleAdd} handleClear={handleClear} />
-      <TodoItems items={items} handleCheck={handleCheck} handleDelete={handleDelete} />
+      <TodoItems handleCheck={handleCheck} handleDelete={handleDelete} />
     </div>
   )
 }

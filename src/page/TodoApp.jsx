@@ -1,12 +1,15 @@
 import React from 'react'
 import axios from 'axios'
+import Recoil from 'recoil'
+import { todoItems } from '../globalState'
 import { Header } from '../component/header'
 import { Input } from '../component/input'
 import { TodoItems } from '../component/todoItems'
 import '../css/style--tailwind.css'
 
 export const TodoApp = () => {
-  const [items, setItems] = React.useState([])
+  const [items, setItems] = Recoil.useRecoilState(todoItems)
+  //const [items, setItems] = React.useState([])
 
   /*
   // ローカルストレージを用いて、データの保存・取得
@@ -24,33 +27,17 @@ export const TodoApp = () => {
   }, [items])
   */
 
-  /*
-  // FetchAPIで取得
-  React.useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => {
-        return response.json()
-      })
-      .then((json) => {
-        console.log('JSON', json)
-      })
-  }, [])
-  */
-
   // axiosで取得
   React.useEffect(async () => {
-    const loadedData = []
-    await axios
-      .get('https://jsonplaceholder.typicode.com/todos')
-      .then((response) => {
-        const filteredData = response.data.filter((data) => data.id < 20)
-        filteredData.map((data) => loadedData.push({ key: getKey(), text: data.title, done: data.completed }))
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-    console.log(loadedData)
-    setItems(loadedData)
+    try {
+      const loadedData = []
+      const res = await axios.get('https://jsonplaceholder.typicode.com/todos')
+      const filteredData = await res.data.filter((data) => data.id < 20)
+      await filteredData.map((data) => loadedData.push({ key: getKey(), text: data.title, done: data.completed }))
+      setItems(loadedData)
+    } catch (error) {
+      console.log(error)
+    }
   }, [])
 
   // リストを一意に紐づけるキー

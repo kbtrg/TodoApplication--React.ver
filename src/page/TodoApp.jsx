@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import { Header } from '../layout/header'
+import { Header } from '../component/header'
 import { Input } from '../component/input'
 import { TodoItems } from '../component/todoItems'
 import '../css/style--tailwind.css'
@@ -15,6 +15,7 @@ export const TodoApp = () => {
     const json = localStorage.list
     if (json === undefined) return
     const parsedItems = JSON.parse(json)
+    console.log(parsedItems.items)
     setItems(parsedItems.items)
   }, [])
   // itemsが更新された時にローカルストレージに保存
@@ -37,42 +38,20 @@ export const TodoApp = () => {
   */
 
   // axiosで取得
-  React.useEffect(() => {
-    axios
+  React.useEffect(async () => {
+    const loadedData = []
+    await axios
       .get('https://jsonplaceholder.typicode.com/todos')
       .then((response) => {
-        const filteredData = response.data.filter((data) => data.id < 10)
-        filteredData.forEach((data) => {
-          console.log(data)
-          console.log(data.title)
-          console.log(data.completed)
-          setItems([...items, { key: getKey(), text: data.title, done: data.completed }])
-          console.log(items)
-        })
+        const filteredData = response.data.filter((data) => data.id < 20)
+        filteredData.map((data) => loadedData.push({ key: getKey(), text: data.title, done: data.completed }))
       })
       .catch((error) => {
         console.log(error)
       })
+    console.log(loadedData)
+    setItems(loadedData)
   }, [])
-
-  /*
-  // axiosで取得
-  React.useEffect(async () => {
-    try {
-      const response = await axios.get('https://jsonplaceholder.typicode.com/todos')
-      const filteredData = await response.data.filter((data) => data.id < 10)
-      filteredData.forEach((data) => {
-        console.log(data)
-        console.log(data.title)
-        console.log(data.completed)
-        setItems([...items, { key: getKey(), text: data.title, done: data.completed }])
-        console.log(items)
-      })
-    } catch (error) {
-      console.log(error)
-    }
-  }, [])
-  */
 
   // リストを一意に紐づけるキー
   const getKey = () => Math.random().toString(32).substring(2)
@@ -105,7 +84,7 @@ export const TodoApp = () => {
   )
 
   return (
-    <div className="h-screen w-screen overflow-hidden bg-yellow-50">
+    <div className="w-screen overflow-hidden bg-yellow-50">
       <Header name={'Todoリスト'} />
       <Input handleAdd={handleAdd} handleClear={handleClear} />
       <TodoItems items={items} handleCheck={handleCheck} handleDelete={handleDelete} />

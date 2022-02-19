@@ -1,5 +1,5 @@
 import React from 'react'
-import { TodoButton } from './buttons/todoButton'
+import { TodoButton } from './button/todoButton'
 
 /* Todoリスト */
 export const TodoItems = React.memo((props) => {

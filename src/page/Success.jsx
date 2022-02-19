@@ -1,6 +1,6 @@
 import React from 'react'
 //import { Link } from 'react-router-dom'
-import { Header } from '../layout/header'
+import { Header } from '../component/header'
 
 export const Success = () => {
   return (

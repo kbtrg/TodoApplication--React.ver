@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 //import Recoil from 'recoil'
 //import { todoItems } from '../globalState'
+import { TodoItemsContext } from '../component/provider/TodoItemsProvider'
 import { Header } from '../component/header'
 import { Input } from '../component/input'
 import { TodoItems } from '../component/itemDisplay'
@@ -9,7 +10,8 @@ import '../css/style--tailwind.css'
 
 export const TodoApp = () => {
   //const [items, setItems] = Recoil.useRecoilState(todoItems)
-  const [items, setItems] = React.useState([])
+  const [items, setItems] = React.useContext(TodoItemsContext)
+  //const [items, setItems] = React.useState([])
 
   /*
   // ローカルストレージを用いて、データの保存・取得

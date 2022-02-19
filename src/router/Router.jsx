@@ -1,5 +1,6 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { TodoItemsProvider } from '../component/provider/TodoItemsProvider.jsx'
 import { Home } from '../page/Home.jsx'
 import { TodoApp } from '../page/TodoApp.jsx'
 import { Anger } from '../page/Anger.jsx'
@@ -11,7 +12,15 @@ export const Router = () => {
   return (
     <Routes>
       <Route exact path="/" element={<Home />} />
-      <Route exact path="todo" element={<TodoApp />} />
+      <Route
+        exact
+        path="todo"
+        element={
+          <TodoItemsProvider>
+            <TodoApp />
+          </TodoItemsProvider>
+        }
+      />
       <Route exact path="anger" element={<Anger />} />
       <Route exact path="stress">
         <Route path="" element={<Stress />} />

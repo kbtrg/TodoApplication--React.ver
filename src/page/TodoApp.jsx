@@ -1,15 +1,15 @@
 import React from 'react'
 import axios from 'axios'
-import Recoil from 'recoil'
-import { todoItems } from '../globalState'
+//import Recoil from 'recoil'
+//import { todoItems } from '../globalState'
 import { Header } from '../component/header'
 import { Input } from '../component/input'
-import { TodoItems } from '../component/todoItems'
+import { TodoItems } from '../component/itemDisplay'
 import '../css/style--tailwind.css'
 
 export const TodoApp = () => {
-  const [items, setItems] = Recoil.useRecoilState(todoItems)
-  //const [items, setItems] = React.useState([])
+  //const [items, setItems] = Recoil.useRecoilState(todoItems)
+  const [items, setItems] = React.useState([])
 
   /*
   // ローカルストレージを用いて、データの保存・取得
@@ -30,10 +30,10 @@ export const TodoApp = () => {
   // axiosで取得
   React.useEffect(async () => {
     try {
-      const loadedData = []
+      // const loadedData = []
       const res = await axios.get('https://jsonplaceholder.typicode.com/todos')
-      const filteredData = await res.data.filter((data) => data.id < 20)
-      await filteredData.map((data) => loadedData.push({ key: getKey(), text: data.title, done: data.completed }))
+      const filteredData = res.data.filter((data) => data.id < 20)
+      const loadedData = filteredData.map((data) => ({ key: getKey(), text: data.title, done: data.completed }))
       setItems(loadedData)
     } catch (error) {
       console.log(error)

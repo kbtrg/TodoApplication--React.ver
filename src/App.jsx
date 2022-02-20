@@ -1,14 +1,14 @@
 import React from 'react'
 import { Router } from './router/Router'
 import { BrowserRouter } from 'react-router-dom'
-import Recoil from 'recoil'
+import { RecoilRoot } from 'recoil'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <Recoil.RecoilRoot>
+      <RecoilRoot>
         <Router />
-      </Recoil.RecoilRoot>
+      </RecoilRoot>
     </BrowserRouter>
   )
 }

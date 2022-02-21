@@ -9,9 +9,9 @@ import { TodoItems } from '../component/itemDisplay'
 import '../css/style--tailwind.css'
 
 export const TodoApp = () => {
+  //const [items, setItems] = React.useState([])
   const [items, setItems] = Recoil.useRecoilState(todoItems)
   //const [items, setItems] = React.useContext(TodoItemsContext)
-  //const [items, setItems] = React.useState([])
 
   /*
   // ローカルストレージを用いて、データの保存・取得

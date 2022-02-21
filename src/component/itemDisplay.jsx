@@ -1,10 +1,13 @@
 import React from 'react'
 import { TodoButton } from './button/todoButton'
-import { TodoItemsContext } from '../component/provider/TodoItemsProvider'
+//import { TodoItemsContext } from '../component/provider/TodoItemsProvider'
+import Recoil from 'recoil'
+import { todoItems } from '../globalState'
 
 /* Todoリスト */
 export const TodoItems = React.memo((props) => {
-  const [items] = React.useContext(TodoItemsContext)
+  //const [items] = React.useContext(TodoItemsContext)
+  const [items] = Recoil.useRecoilValue(todoItems)
 
   // メイン関数のonCheckへ渡す
   const handleCheck = (checkedItem) => {

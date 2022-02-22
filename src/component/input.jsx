@@ -1,6 +1,7 @@
 import React from 'react'
 import { MyModal } from './modal'
 import { InputButton } from './button/inputButton'
+import { LoadButton } from './button/loadButton'
 
 /* 入力ボックス */
 export const Input = (props) => {
@@ -42,8 +43,9 @@ export const Input = (props) => {
           onChange={handleChange}
           onKeyDown={(e) => handleEnterKeyDown(e)}
         />
-        <InputButton onClick={handleAdd} innerText={'登録'} extraClassName={'ml-10'} />
-        <InputButton onClick={handleClear} innerText={'クリア'} extraClassName={'ml-24'} />
+        <InputButton onClick={handleAdd} innerText={'登録'} extraClassName={'ml-8'} />
+        <LoadButton extraClassName={'ml-8'} />
+        <InputButton onClick={handleClear} innerText={'クリア'} extraClassName={'ml-8'} />
       </div>
       <div className={'text-center font-bold text-rose-600' + ' ' + (isEmpty ? '' : 'hidden')}>
         テキストを入力してください。

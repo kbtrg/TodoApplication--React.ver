@@ -1,7 +1,7 @@
 import React from 'react'
 import { useTodoData } from '../hook/useTodoData'
 
-export const LoadButton = (props) => {
+export const LoadButton = React.memo((props) => {
   const { isLoading, fetch } = useTodoData()
   const handleFetch = () => fetch()
 
@@ -19,4 +19,5 @@ export const LoadButton = (props) => {
       )}
     </>
   )
-}
+})
+LoadButton.displayName = 'LoadButton'

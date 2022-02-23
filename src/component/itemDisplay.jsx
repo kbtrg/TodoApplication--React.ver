@@ -3,7 +3,7 @@ import { TodoButton } from './button/todoButton'
 import { TodoItemsContext } from '../component/provider/TodoItemsProvider'
 
 /* Todoリスト */
-export const TodoItems = React.memo((props) => {
+export const ItemDisplay = React.memo((props) => {
   const [items] = React.useContext(TodoItemsContext)
 
   // メイン関数のonCheckへ渡す
@@ -51,4 +51,4 @@ export const TodoItems = React.memo((props) => {
     </>
   )
 })
-TodoItems.displayName = 'TodoItems'
+ItemDisplay.displayName = 'ItemDisplay'

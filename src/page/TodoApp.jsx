@@ -2,7 +2,7 @@ import React from 'react'
 import { TodoItemsContext } from '../component/provider/TodoItemsProvider'
 import { Header } from '../component/header'
 import { Input } from '../component/input'
-import { TodoItems } from '../component/itemDisplay'
+import { ItemDisplay } from '../component/itemDisplay'
 import '../css/style--tailwind.css'
 
 export const TodoApp = () => {
@@ -58,7 +58,7 @@ export const TodoApp = () => {
     <div className="w-screen overflow-hidden bg-yellow-50">
       <Header name={'Todoリスト'} />
       <Input handleAdd={handleAdd} handleClear={handleClear} />
-      <TodoItems handleCheck={handleCheck} handleDelete={handleDelete} />
+      <ItemDisplay handleCheck={handleCheck} handleDelete={handleDelete} />
     </div>
   )
 }

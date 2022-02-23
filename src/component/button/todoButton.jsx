@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const TodoButton = (props) => {
+export const TodoButton = React.memo((props) => {
   return (
     <button
       className={'mx-1 my-auto rounded-lg border-2 border-solid border-lime-300 p-1 text-xs ' + props.extraClassName}
@@ -9,4 +9,5 @@ export const TodoButton = (props) => {
       {props.innerText}
     </button>
   )
-}
+})
+TodoButton.displayName = 'TodoButton'
